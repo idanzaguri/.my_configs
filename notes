@@ -1,0 +1,86 @@
+RAID1
+----------------------------------------------
+setting up software raid1 for sdb/sdc (https://www.linuxbabe.com/linux-server/linux-software-raid-1-setup) MDADM
+after reinstall linux:
+sudo mdadm --assemble --scan
+
+sudo mdadm --stop /dev/md0
+sudo mdadm --assemble --scan
+
+(after reinstall need to check that /etc/mdadm/mdadm.conf is clean and has only one instance of /dev/md0)
+SAMBA
+------------------------------------------------
+SAMBA server (https://ubuntu.com/tutorials/install-and-configure-samba)
+
+stop/start
+To Stop Samba: sudo service smbd stop. or sudo /etc/init.d/smbd stop.
+To Start Samba: sudo service smbd start. or sudo /etc/init.d/smbd start.
+
+VNC
+-----------------------------------------------
+How to start a vnc server for the actual display (scraping) with TigerVNC
+sudo apt-get install tigervnc-scraping-server
+vncpasswd # create password for the vnc
+x0vncserver -passwordfile ~/.vnc/passwd -display :0
+https://www.howtoforge.com/tutorial/how-to-start-a-vnc-server-for-the-actual-display-scraping-with-tigervnc/
+echo "/home/idan/bin/startvnc start >/dev/null 2>&1" >> ~/.xsessionrc
+
+*** in order to enable direct ethernet connection with another computer need to change IPv4 method to 'link local only'
+
+SSH server
+---------------------------------------
+sudo apt-get install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo ufw allow ssh
+
+chrome
+-----------------------------------------
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+
+
+
+
+xilinx ise
+-----------------------------------------
+http://dreamrunner.org/blog/2012/09/12/install-xilinx-ise-on-the-ubuntu/
+https://www.george-smart.co.uk/fpga/xilinx_jtag_linux/
+http://git.zerfleddert.de/cgi-bin/gitweb.cgi/usb-driver?a=blob_plain;f=README;hb=HEAD
+http://rmdir.de/~michael/xilinx/
+
+tar -xf Xilinx_ISE_DS_Lin_14.7_1015_1.tar
+sudo ./xsetup
+sudo apt-get install libncurses5 <---- was missing
+export LD_PRELOAD=/opt/Xilinx/usb-driver/libusb-driver.so
+
+add this file ~/.libusb-driverrc:
+LPT1 = FTDI:0403:6014
+
+video:
+https://www.youtube.com/watch?v=meO-b6Ib17Y&ab_channel=ApurvaNandan
+
+
+The environment variables are written to settings[32|64].(c)sh at "/opt/Xilinx/14.7/ISE_DS". To launch the Xilinx tools, first source the settings script:
+Shell, Bash shell, Korn Shell 64 bit environment...
+. /opt/Xilinx/14.7/ISE_DS/settings64.sh
+
+
+
+
+
+
+RISC-V GNU Compiler Toolchain
+---------------------------------------------------------
+https://github.com/riscv/riscv-gnu-toolchain
+git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
+PATH=$PATH:/opt/riscv/bin
+./configure --prefix=/opt/riscv --with-arch=rv32imca # 'a' is must due to glibc requirements 
+make linux
+
+https://xpack.github.io/riscv-none-embed-gcc/install/ <----- need to try this also
+
+
+
+
