@@ -1,6 +1,8 @@
 sudo apt install htop
 sudo apt install vim-gtk3
 sudo apt install tmux
+sudo apt install git
+sudo apt install curl
 
 # set up wired connection with windows computer
 sudo apt install net-tools
@@ -66,9 +68,6 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 #sudo apt-get install libftdi-dev
 #sudo apt-get install -y verilator
 #sudo apt-get install autoconf automake autotools-dev curl python3 libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils
-#sudo apt-get install gtkwave
 
 SHOW ALL INSTALLED PACKAGES:
 sudo apt list --installed
-sudo apt install git
-sudo apt install curl

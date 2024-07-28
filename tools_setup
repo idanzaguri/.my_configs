@@ -21,15 +21,24 @@ UNINSTALL:
 cd /build/tools/gtkwave/build
 sudo ninja uninstall
 
-#ModelSim
-Download modelsim from Intel wesite
-sudo ./ModelSimSetup-18.1.0.625-linux.run --installdir /tools
-sudo chown -R :tools /tools/modelsim
 
-sudo dpkg --add-architecture i386
-sudo apt-get update
-sudo apt-get install libncurses6 libxft2 libxft2:i386
-sudo apt install libxext6:i386
+# Questa model sim
+Download Questa*-Intel® FPGA and Starter Editions
+https://www.intel.com/content/www/us/en/software-kit/825312/questa-intel-fpgas-standard-edition-software-version-23-1-1.html
 
-UNINSTALL:
-sudo /tools/uninstall/modelsim_ase-18.1.0.625-linux-uninstall.run ???
+chmod +x QuestaSetup-23.1std.1.993-linux.run
+sudo ./QuestaSetup-23.1std.1.993-linux.run --installdir /tools/intel
+add /tools/intel/questa_fse/bin/ to PATH
+
+* edit modelsim.ini to use uvm1.2
+sudo /tools/intel/questa_fse/modelsim.ini
+change mtiUvm = $MODEL_TECH/…/uvm-1.1d to mtiUvm = $MODEL_TECH/…/uvm-1.2
+
+# remove all installed gcc, enforce modelsim to use system GCC
+sudo rm -fr /tools/intel/questa_fse/gcc-*
+
+add licnese
+export LM_LICENSE_FILE=/tools/intel/licenses/LR-130654_License.dat
+
+
+
