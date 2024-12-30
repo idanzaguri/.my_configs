@@ -83,4 +83,7 @@ https://xpack.github.io/riscv-none-embed-gcc/install/ <----- need to try this al
 
 
 
-
+Powerline-Compatible Font
+-------------------------------------
+sudo apt install fonts-firacode
+Then update your terminal settings to use 'Fira Code' font.
