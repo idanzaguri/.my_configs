@@ -22,6 +22,9 @@ vim ~/.xsessionrc
 	x0vncserver -passwordfile /home/idan/.vnc/passwd -display :0 -localhost no
 sudo ufw allow from any to any port 5900
 
+sudo apt install autocutsel
+autocutsel -fork >> ~/.xsessionrc
+
 reboot
 
 # Reconfiugre RAID1 array
@@ -71,3 +74,4 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 SHOW ALL INSTALLED PACKAGES:
 sudo apt list --installed
+
